@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Job Portal Admin</title>
+  <link rel="icon" type="image/x-icon" href="logos/career.png">
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <header class="header">
+    <div class="logo"><img src="logos/cybermind_works_logo.png" alt="company-logo"></div>
+    <nav>
+      <ul>
+        <li>Home</li>
+        <li>Find Jobs</li>
+        <li>Find Talents</li>
+        <li>About us</li>
+        <li>Testimonials</li>
+      </ul>
+    </nav>
+    <button class="create-btn">Create Jobs</button>
+  </header>
+
+  <!-- Modals -->
+  <div id="jobModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn">&times;</span>
+      <h2 style="text-align:center; margin-bottom:2rem;">Create Job Opening</h2>
+      <form>
+        <!-- Job Title + Company Name -->
+        <div class="two-columns-row" style="gap: 65px; margin-right: 35px;">
+          <div class="input-group">
+            <label for="jobTitle">Job Title</label>
+            <input type="text" id="jobTitle" name="jobTitle" placeholder="e.g. Software Engineer">
+          </div>
+          <div class="input-group">
+            <label for="companyName">Company Name</label>
+            <input type="text" id="companyName" name="companyName" placeholder="Amazon, Microsoft, Swiggy">
+          </div>
+        </div>
+
+
+        <!-- Row: Location + Job Type -->
+        <div class="two-columns-row">
+          <div class="input-group">
+            <label for="location">Location</label>
+            <select id="location" name="location">
+              <option value="">Choose Preferred Location</option>
+              <option value="remote">Remote</option>
+              <option value="bangalore">Bangalore</option>
+              <option value="mumbai">Mumbai</option>
+              <option value="delhi">Delhi</option>
+            </select>
+          </div>
+          <div class="input-group">
+            <label for="jobType">Job Type</label>
+            <select id="jobType" name="jobType">
+              <option value="fullTime">FullTime</option>
+              <option value="partTime">PartTime</option>
+              <option value="contract">Contract</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Row: Salary Range + Deadline -->
+        <div class="two-columns-row">
+          <div class="input-group">
+            <label for="startSalary">Salary Range</label>
+            <div class="salary-range-wrapper">
+              <div class="input-with-icon">
+                <span class="input-icon">⇵</span>
+                <input type="number" id="startSalary" name="startSalary" placeholder="₹ 0" />
+              </div>
+              <div class="input-with-icon">
+                <span class="input-icon">⇵</span>
+                <input type="number" id="endSalary" name="endSalary" placeholder="₹ 12,00,000" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Application deadline -->
+          <div class="input-group">
+            <label for="applicationDeadline">Application Deadline</label>
+            <input type="date" id="applicationDeadline" name="applicationDeadline" />
+          </div>
+        </div>
+
+        <!-- Job Description -->
+        <div class="input-group" style="margin-bottom: 24px;">
+          <label for="jobDesc">Job Description</label>
+          <textarea id="jobDesc" name="jobDesc" rows="5"
+            placeholder="Please share a description to let the candidate know more about the job role"></textarea>
+        </div>
+
+        <!-- Buttons -->
+        <div class="button-row">
+          <button type="button" class="draft-btn">Save Draft ⇩</button>
+          <button type="submit" class="publish-btn">Publish »</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <section class="filters">
+    <div class="filter-item">
+      <span class="icon"><img src="logos/magnifying-glass.png" class="filter-icon" alt="Filter"></span>
+      <input type="text" id="jobTitleInput" placeholder="Search by job title or role" />
+    </div>
+    <div class="divider"></div>
+    <div class="filter-item">
+      <span class="icon"><img src="logos/pin.png" class="filter-icon" alt="Filter"></span>
+      <div class="custom-select" id="locationSelect">
+        <div class="selected-text">Preferred Location <img src="logos/dropdown.png" class="drop-icon" alt="dropdown">
+        </div>
+        <div class="options-list hidden">
+          <div class="option">Chennai</div>
+          <div class="option">Bangalore</div>
+          <div class="option">Hyderabad</div>
+          <div class="option">Remote</div>
+        </div>
+      </div>
+    </div>
+    <div class="divider"></div>
+    <div class="filter-item">
+      <span class="icon"><img src="logos/Vector (4).png" class="filter-icon" alt="Filter"></span>
+      <select id="jobTypeSelect">
+        <option value="">Job type </option>
+        <option value="Full-time">Full-time</option>
+        <option value="Part-time">Part-time</option>
+        <option value="Internship">Internship</option>
+      </select>
+    </div>
+    <div class="divider"></div>
+     <div class="filter-item salary-slider" >
+       <p>Salary Per Month</p> 
+      <div style="color: aqua;">
+         <input type="range" min="20000" max="200000" step="5000" value="100000" id="salaryRange">
+      </div>
+      <span id="salaryValue">₹50k - ₹80k</span>
+    </div> 
+
+  </section>
+
+  <section class="job-grid-wrapper">
+    <section class="job-grid">
+      <div class="job-card" data-title="FullStack Developer" data-location="Chennai" data-type="full-time"
+        data-salary="1200000">
+        <div class="badge">24h Ago</div>
+        <div class="logo-wrapper">
+          <img src="logos/amazon.svg" alt="Company Logo" class="company-logo" />
+        </div>
+        <h3>FullStack Developer</h3>
+        <p class="details">
+          <img src="logos/Vector (1).png" alt="vector1.png"> 1–3 yr Exp
+          <img src="logos/Vector.png" class="filter-icon" alt="Filter"> Onsite
+          <img src="logos/Vector (3).png" class="filter-icon" alt="Filter"> 12LPA
+        </p>
+        </p>
+        <ul class="description">
+          <li>A user-friendly interface lets you browse stunning photos and videos</li>
+          <li>Filter destinations based on interests and travel style, and create personalized </li>
+        </ul>
+        <button class="apply-btn">Apply Now</button>
+      </div>
+
+      <div class="job-card" data-title="Node Js Developer" data-location="Bangalore" data-type="full-time"
+        data-salary="1200000">
+        <div class="badge">24h Ago</div>
+        <div class="logo-wrapper"><img src="logos/tesla-logo-png-2237.png" alt="Company Logo" class="company-logo" />
+        </div>
+        <h3>Node Js Developer</h3>
+        <p class="details">
+          <img src="logos/Vector (1).png" alt="vector1.png"> 1–3 yr Exp
+          <img src="logos/Vector.png" class="filter-icon" alt="Filter"> Onsite
+          <img src="logos/Vector (3).png" class="filter-icon" alt="Filter"> 12LPA
+        </p>
+        <ul class="description">
+          <li>A user-friendly interface lets you browse stunning photos and videos</li>
+          <li>Filter destinations based on interests and travel style, and create personalized </li>
+        </ul>
+        <button class="apply-btn">Apply Now</button>
+      </div>
+      <div class="job-card" data-title="ux/ui designer" data-location="Remote" data-type="full-time"
+        data-salary="1200000">
+        <div class="badge">24h Ago</div>
+        <div class="logo-wrapper">
+          <img src="logos/Swiggy.png" alt="Company Logo" class="company-logo" />
+        </div>
+        <h3>UX/UI Designer</h3>
+        <p class="details">
+          <img src="logos/Vector (1).png" alt="vector1.png"> 1–3 yr Exp
+          <img src="logos/Vector.png" class="filter-icon" alt="Filter"> Onsite
+          <img src="logos/Vector (3).png" class="filter-icon" alt="Filter"> 12LPA
+        </p>
+        <ul class="description">
+          <li>A user-friendly interface lets you browse stunning photos and videos</li>
+          <li>Filter destinations based on interests and travel style, and create personalized </li>
+        </ul>
+        <button class="apply-btn">Apply Now</button>
+      </div>
+
+      <div class="job-card" data-title="FullStack Developer" data-location="Chennai" data-type="part-time"
+        data-salary="1200000">
+        <div class="badge">24h Ago</div>
+        <div class="logo-wrapper">
+          <img src="logos/amazon.svg" alt="Company Logo" class="company-logo" />
+        </div>
+        <h3>FullStack Developer</h3>
+        <p class="details">
+          <img src="logos/Vector (1).png" alt="vector1.png"> 1–3 yr Exp
+          <img src="logos/Vector.png" class="filter-icon" alt="Filter"> Onsite
+          <img src="logos/Vector (3).png" class="filter-icon" alt="Filter"> 12LPA
+        </p>
+        <ul class="description">
+          <li>A user-friendly interface lets you browse stunning photos and videos</li>
+          <li>Filter destinations based on interests and travel style, and create personalized </li>
+        </ul>
+        <button class="apply-btn">Apply Now</button>
+      </div>
+
+      <div class="job-card" data-title="Node Js Developer" data-location="Bangalore" data-type="part-time"
+        data-salary="1200000">
+        <div class="badge">24h Ago</div>
+        <div class="logo-wrapper">
+          <img src="logos/tesla-logo-png-2237.png" alt="Company Logo" class="company-logo" />
+        </div>
+        <h3>Node Js Developer</h3>
+        <p class="details">
+          <img src="logos/Vector (1).png" alt="vector1.png"> 1–3 yr Exp
+          <img src="logos/Vector.png" class="filter-icon" alt="Filter"> Onsite
+          <img src="logos/Vector (3).png" class="filter-icon" alt="Filter"> 12LPA
+        </p>
+        <ul class="description">
+          <li>A user-friendly interface lets you browse stunning photos and videos</li>
+          <li>Filter destinations based on interests and travel style, and create personalized </li>
+        </ul>
+        <button class="apply-btn">Apply Now</button>
+      </div>
+      <div class="job-card" data-title="UX/UI Designer" data-location="Remote" data-type="full-time"
+        data-salary="1200000">
+        <div class="badge">24h Ago</div>
+        <div class="logo-wrapper">
+          <img src="logos/Swiggy.png" alt="Company Logo" class="company-logo" />
+        </div>
+        <h3>UX/UI Designer</h3>
+        <p class="details">
+          <img src="logos/Vector (1).png" alt="vector1.png"> 1–3 yr Exp
+          <img src="logos/Vector.png" class="filter-icon" alt="Filter"> Onsite
+          <img src="logos/Vector (3).png" class="filter-icon" alt="Filter"> 12LPA
+        </p>
+        <ul class="description">
+          <li>A user-friendly interface lets you browse stunning photos and videos</li>
+          <li>Filter destinations based on interests and travel style, and create personalized </li>
+        </ul>
+        <button class="apply-btn">Apply Now</button>
+      </div>
+
+      <div class="job-card" data-title="FullStack Developer" data-location="Chennai" data-type="part-time"
+        data-salary="1200000">
+        <div class="badge">24h Ago</div>
+        <div class="logo-wrapper">
+          <img src="logos/amazon.svg" alt="Company Logo" class="company-logo" />
+        </div>
+        <h3>FullStack Developer</h3>
+        <p class="details">
+          <img src="logos/Vector (1).png" alt="vector1.png"> 1–3 yr Exp
+          <img src="logos/Vector.png" class="filter-icon" alt="Filter"> Onsite
+          <img src="logos/Vector (3).png" class="filter-icon" alt="Filter"> 12LPA
+        </p>
+        <ul class="description">
+          <li>A user-friendly interface lets you browse stunning photos and videos</li>
+          <li>Filter destinations based on interests and travel style, and create personalized </li>
+        </ul>
+        <button class="apply-btn">Apply Now</button>
+      </div>
+
+      <div class="job-card" data-title="Node Js Developer" data-location="Bangalore" data-type="internship"
+        data-salary="1200000">
+        <div class="badge">24h Ago</div>
+        <img src="logos/tesla-logo-png-2237.png" alt="Company Logo" class="company-logo" />
+        <h3>Node Js Developer</h3>
+        <p class="details">
+          <img src="logos/Vector (1).png" alt="vector1.png"> 1–3 yr Exp
+          <img src="logos/Vector.png" class="filter-icon" alt="Filter"> Onsite
+          <img src="logos/Vector (3).png" class="filter-icon" alt="Filter"> 12LPA
+        </p>
+        <ul class="description">
+          <li>A user-friendly interface lets you browse stunning photos and videos</li>
+          <li>Filter destinations based on interests and travel style, and create personalized </li>
+        </ul>
+        <button class="apply-btn">Apply Now</button>
+      </div>
+    </section>
+  </section>
+
+
+  <script>
+    //Modal Logic
+    const modal = document.getElementById("jobModal");
+    const openBtn = document.querySelector(".create-btn");
+    const closeBtn = document.querySelector(".close-btn");
+
+    openBtn.onclick = () => {
+      modal.style.display = "block";
+    };
+
+    closeBtn.onclick = () => {
+      modal.style.display = "none";
+    };
+
+    window.onclick = (event) => {
+      if (event.target === modal) {
+        modal.style.display = "none";
+      }
+    };
+
+    //  Custom Location Dropdown
+    const locationSelect = document.getElementById("locationSelect");
+    const selectedText = locationSelect.querySelector(".selected-text");
+    const optionsList = locationSelect.querySelector(".options-list");
+    const options = optionsList.querySelectorAll(".option");
+
+    let selectedLocations = [];
+
+    locationSelect.addEventListener("click", (e) => {
+      optionsList.classList.toggle("hidden");
+      e.stopPropagation();
+    });
+
+    document.addEventListener("click", () => {
+      optionsList.classList.add("hidden");
+    });
+
+    options.forEach(option => {
+      option.addEventListener("click", (e) => {
+        const value = e.target.textContent.trim();
+
+        if (selectedLocations.includes(value)) {
+          selectedLocations = selectedLocations.filter(loc => loc !== value);
+        } else {
+          if (selectedLocations.length >= 3) {
+            alert("You can select up to 3 locations only.");
+            return;
+          }
+          selectedLocations.push(value);
+        }
+
+        selectedText.textContent = selectedLocations.length > 0
+          ? selectedLocations.join(", ")
+          : "Preferred Location";
+
+        console.log("Selected locations:", selectedLocations);
+
+        filterJobs();
+      });
+    });
+
+
+    // Live Filterin
+    const titleInput = document.querySelector('input[placeholder*="title"]');
+    const jobTypeSelect = document.getElementById('jobTypeSelect');
+    const salaryRange = document.getElementById("salaryRange");
+    const jobCards = document.querySelectorAll(".job-card");
+
+    function filterJobs() {
+      const titleVal = titleInput.value.toLowerCase();
+      const selectedType = jobTypeSelect.value.toLowerCase();
+      const salaryVal = parseInt(salaryRange.value);
+      const locations = selectedLocations.map(loc => loc.toLowerCase());
+
+      jobCards.forEach(card => {
+        const jobTitle = card.dataset.title?.toLowerCase() || "";
+        const jobLocation = card.dataset.location?.toLowerCase() || "";
+        const jobType = card.dataset.type?.toLowerCase() || "";
+        const jobSalary = parseInt(card.dataset.salary) / 12 || 0; // 💡 convert yearly → monthly
+
+
+        const matchesTitle = jobTitle.includes(titleVal);
+        const matchesType = !selectedType || jobType === selectedType;
+        const matchesSalary = jobSalary <= salaryVal;
+        const matchesLocation = locations.length === 0 || locations.includes(jobLocation);
+
+        const shouldShow = matchesTitle && matchesType && matchesSalary && matchesLocation;
+
+        console.log({
+          jobTitle,
+          jobLocation,
+          jobType,
+          jobSalary,
+          titleVal,
+          selectedType,
+          salaryVal,
+          locations,
+          matchesTitle,
+          matchesType,
+          matchesSalary,
+          matchesLocation,
+          shouldShow
+        });
+
+        card.style.display = shouldShow ? "block" : "none";
+      });
+    }
+
+    document.getElementById("jobTitleInput").addEventListener("input", filterJobs);
+    document.getElementById("jobTypeSelect").addEventListener("change", filterJobs);
+    document.getElementById("salaryRange").addEventListener("input", () => {
+      document.getElementById("salaryValue").textContent = `₹${parseInt(salaryRange.value).toLocaleString()}`;
+      filterJobs();
+    });
+
+
+  const minRange = document.getElementById("minRange");
+  const maxRange = document.getElementById("maxRange");
+  const salaryValue = document.getElementById("salaryValue");
+  const track = document.querySelector(".range-slider::before");
+
+  function updateSalary() {
+    let minVal = parseInt(minRange.value);
+    let maxVal = parseInt(maxRange.value);
+
+    // Swap values if crossed
+    if (minVal > maxVal) {
+      [minVal, maxVal] = [maxVal, minVal];
+    }
+
+    salaryValue.textContent = `₹${minVal / 1000}k - ₹${maxVal / 1000}k`;
+
+    // Update black bar visually using inline styles
+    const slider = document.querySelector('.range-slider');
+    const percent1 = ((minVal - 20000) / (200000 - 20000)) * 100;
+    const percent2 = ((maxVal - 20000) / (200000 - 20000)) * 100;
+
+    slider.style.setProperty('--left', percent1 + '%');
+    slider.style.setProperty('--right', 100 - percent2 + '%');
+  }
+
+  minRange.addEventListener('input', updateSalary);
+  maxRange.addEventListener('input', updateSalary);
+  updateSalary();
+
+  </script>
+</body>
+
+</html>
