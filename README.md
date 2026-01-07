@@ -3,6 +3,12 @@
 A web-based Job Portal interface that displays job listings with filtering options and provides an admin-style modal form to create new job postings.
 This project focuses on frontend logic, UI behavior, and data handling, built as a learning project to understand real-world job portal workflows.
 
+🌐 Live Demo(Click here to view live)
+
+🔗 Live Project:
+👉 https://lokeshh301.github.io/Job_Portal_Admin/
+
+
 🚀 Features
 
 Job listing page with multiple job cards
@@ -53,24 +59,18 @@ Submitting the form adds a new job to the listing instantly.
 
 No page refresh is required.
 
-🌐 Live Demo
-
-🔗 Live Project:
-👉 https://your-live-demo-link.netlify.app
-
 📸 Screenshots
-
-Job listing page
+Home Page
+<img width="1366" height="614" alt="image" src="https://github.com/user-attachments/assets/b162f79a-6ea4-4f88-b40d-3b158fbd5eea" />
 
 Filters in action
+<img width="1366" height="619" alt="image" src="https://github.com/user-attachments/assets/dab1acc8-75a4-4f3b-81bd-200149b538f3" />
 
 Create job modal
+<img width="1351" height="617" alt="image" src="https://github.com/user-attachments/assets/c9f301cb-c447-4d62-85cd-b4fcf3ea5acc" />
 
-(Add screenshots here)
 
 🎯 Learning Outcomes
-
-Implemented dynamic DOM manipulation using JavaScript
 
 Built reusable UI components (job cards, modal)
 
